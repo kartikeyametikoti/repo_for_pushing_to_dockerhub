@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'my-python-app3'
+        registry = 'kartikeya1112/my-python-app6'
+        registryCredential = 'dockerhub_id'
         DOCKER_TAG = 'latest'
-        DOCKER_IMAGE_NAME = "${DOCKER_IMAGE}:${DOCKER_TAG}"
+        DOCKER_IMAGE_NAME = "${registry}:${DOCKER_TAG}"
     }
-
     stages {
         stage('Getting Git Repo') {
             steps {
@@ -16,15 +16,16 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('my-python-app3:latest')
+                   dockerImage = docker.build registry
                 }
             }
         }
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    docker.image('my-python-app3:latest').run('-d -p 1500:5000')
-                }
+        stage('pushing to dockerhub')
+        {
+            steps{
+                script{
+                    docker.withRegistry('',registryCredential)
+                    dockerImage.push()
             }
         }
     }
