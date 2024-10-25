@@ -20,14 +20,6 @@ pipeline {
                 }
             }
         }
-        stage('pushing to dockerhub')
-        {
-            steps{
-                script{
-                    docker.withRegistry('',registryCredential)
-                    dockerImage.push()
-            }
-        }
-    }
+        
 }
 }
