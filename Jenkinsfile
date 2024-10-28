@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
-        
+      stage('Push to Docker Hub') {
+            steps {
+                script {
+                    // Push the Docker image to Docker Hub
+                    sh 'docker push kartikeya1112/my-python-app6'
+                }
+            }
+        }  
 }
 }
