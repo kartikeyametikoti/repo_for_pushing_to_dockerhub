@@ -3,8 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.8
-      docker: 20
+      python: 3.8  # Specify supported runtime for Python
     commands:
       - echo "Installing dependencies"
       - apt-get update && apt-get install -y git
