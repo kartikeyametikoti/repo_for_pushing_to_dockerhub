@@ -1,20 +1,19 @@
-version: 0.2
-
 phases:
   install:
     runtime-versions:
-      python: 3.8  # Specify supported runtime for Python
+      python: 3.8
     commands:
       - echo "Installing dependencies"
       - apt-get update && apt-get install -y git
 
   pre_build:
     commands:
-      - docker --version
       - echo "Cloning the GitHub repository"
       - git clone https://github.com/kartikeyametikoti/repo_for_pushing_to_dockerhub.git app
       - cd app
       - echo "Repository cloned successfully"
+      - echo "Logging into Amazon ECR"
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 491085395524.dkr.ecr.us-east-1.amazonaws.com
 
   build:
     commands:
@@ -24,9 +23,12 @@ phases:
 
   post_build:
     commands:
-      - echo "Build phase completed!"
+      - echo "Tagging the Docker image"
+      - docker tag kartikeya1112/amma:latest 491085395524.dkr.ecr.us-east-1.amazonaws.com/kartikeya1112/amma:latest
+      - echo "Pushing the Docker image to ECR"
+      - docker push 491085395524.dkr.ecr.us-east-1.amazonaws.com/kartikeya1112/amma:latest
+      - echo "Docker image pushed successfully"
 
 artifacts:
   files:
-    - "**/*"
-
+    - "**/"
