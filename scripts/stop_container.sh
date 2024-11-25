@@ -1,3 +1,5 @@
+#!/bin/bash
 set -e
 
-echo " stope the container" 
+echo "stopped the container"
+
