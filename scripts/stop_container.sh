@@ -1,3 +1,3 @@
 set -e
 
- echo " stope the container" 
+echo " stope the container" 
