@@ -9,7 +9,7 @@ sudo docker ps | awk 'NR>1 { print $1 }' | while read -r container_id; do
     sudo docker rm "$container_id"
 done
 
-echo "All running containers have been stopped and removed."
+echo "All running containers have been stopped and  removed."
 
 
 
