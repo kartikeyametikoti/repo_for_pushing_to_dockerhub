@@ -28,7 +28,7 @@ phases:
       - echo "Tagging the Docker image"
       - docker tag flask-app:latest 491085395524.dkr.ecr.us-east-1.amazonaws.com/kartikeya1112/amma:second
       - echo "Pushing the Docker image to ECR"
-      - docker push 491085395524.dkr.ecr.us-east-1.amazonaws.com/kartikeya1112/amma:latest
+      - docker push 491085395524.dkr.ecr.us-east-1.amazonaws.com/kartikeya1112/amma:second
       - echo "Docker image pushed successfully"
 
 artifacts:
