@@ -39,12 +39,12 @@ jobs:
         EC2_HOST: ${{ secrets.EC2_HOST }}
         EC2_USER: ${{ secrets.EC2_USER }}
       run: |
-        echo "$SSH_KEY" > key.pem
+        echo "$SSH_KEY" > publickey-mine.pem
         chmod 600 key.pem
-        ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USER@$EC2_HOST << EOF
-          docker pull <dockerhub-username>/my-flask-app:latest
+        ssh -o StrictHostKeyChecking=no -i publickey-mine.pem $EC2_USER@$EC2_HOST << EOF
+          docker pull kartikeya1112/python_project:latest
           docker stop flask-app || true
           docker rm flask-app || true
-          docker run -d --name flask-app -p 80:5000 <dockerhub-username>/my-flask-app:latest
+          docker run -d --name flask-app -p 80:5000 kartikeya1112/python_project:latest
         EOF
 
