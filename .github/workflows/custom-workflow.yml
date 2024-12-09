@@ -32,7 +32,7 @@ jobs:
         docker tag my-flask-app:latest kartikeya1112/python_project:latest
         docker push kartikeya1112/python_project:latest
 
-    # Step 5: Deploy container to EC2
+    # Step 5: Deploy  container to EC2
     - name: Deploy to EC2
       env:
         SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
