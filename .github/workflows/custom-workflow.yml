@@ -46,6 +46,7 @@ jobs:
           sudo yum install docker -y
           sudo systemctl enable docker
           sudo systemctl start docker
+          sudo docker ps | awk 'NR>1 {print $1}' |sudo xargs docker stop
           sudo docker pull kartikeya1112/python_project:latest
           sudo docker stop flask-app || true
           sudo docker rm flask-app || true
