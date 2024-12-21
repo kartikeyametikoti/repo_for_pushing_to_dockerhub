@@ -39,8 +39,8 @@ jobs:
         EC2_HOST: ${{ secrets.EC2_HOST }}
         EC2_USER: ${{ secrets.EC2_USER }}
       run: |
-        echo "$SSH_KEY" > publickey-mine.pem
-        chmod 600 publickey-mine.pem
+        echo "$SSH_KEY" > kartikkey.pem
+        chmod 600 kartikkey.pem
         ssh -o StrictHostKeyChecking=no -i kartikkey.pem $EC2_USER@$EC2_HOST << EOF
           sudo docker pull kartikeya1112/python_project:latest
           sudo docker stop flask-app || true
