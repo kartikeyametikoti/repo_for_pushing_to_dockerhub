@@ -42,7 +42,10 @@ jobs:
         echo "$SSH_KEY" > kartikkey.pem
         sudo chmod 600 kartikkey.pem
         ssh -o StrictHostKeyChecking=no -i kartikkey.pem $EC2_USER@$EC2_HOST << EOF
-          sudo yum install docker.io -y
+          sudo yum update
+          sudo yum install docker -y
+          sudo systemctl enable docker
+          sudo systemctl start docker
           sudo docker pull kartikeya1112/python_project:latest
           sudo docker stop flask-app || true
           sudo docker rm flask-app || true
