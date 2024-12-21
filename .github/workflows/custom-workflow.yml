@@ -41,7 +41,7 @@ jobs:
       run: |
         echo "$SSH_KEY" > publickey-mine.pem
         chmod 600 publickey-mine.pem
-        ssh -o StrictHostKeyChecking=no -i publickey-mine.pem $EC2_USER@$EC2_HOST << EOF
+        ssh -o StrictHostKeyChecking=no -i kartikkey.pem $EC2_USER@$EC2_HOST << EOF
           sudo docker pull kartikeya1112/python_project:latest
           sudo docker stop flask-app || true
           sudo docker rm flask-app || true
